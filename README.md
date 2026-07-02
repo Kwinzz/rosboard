@@ -1,3 +1,30 @@
+# Note about this Fork
+
+This repository is a fork of the original **ROSboard** project. It includes new features to better manage the display and selection of topics at launch.
+
+### New Launch Parameters
+
+Two new parameters have been added to customize the web interface:
+
+* **`exclude_topics`** (`:=/topic1,/topic2...`): Hides the selected topics from the topic tree on the web interface. It is also possible to hide an entire topic tree (for example, `exclude_topics:=/camera`).
+* **`default_topics`** (`:=/topic1,/topic2...`): Automatically subscribes to the selected topics upon the first launch of ROSboard. This is ideal for highlighting basic, useful topics for new users who might be lost.
+
+### Usage Example (ROS 2)
+
+Here is an example command to launch the node with these parameters:
+
+```bash
+ros2 run rosboard rosboard_node --ros-args -p default_topics:=/camera/camera/color/image_raw,/camera/camera/accel/sample -p exclude_topics:=/camera/camera/accel/imu_info
+```
+
+**Result of this command:**
+* The `/camera/camera/accel/imu_info` topic will be hidden from the web interface's topic tree.
+* The interface will automatically subscribe to `/camera/camera/color/image_raw` and `/camera/camera/accel/sample` on the first launch.
+
+---
+
+*The original project README can be found below:*
+
 # ROSboard 
 
 ROS node that runs a web server on your robot.
