@@ -206,8 +206,8 @@ class ROSBoardNode(object):
         try:
             # all topics and their types as strings e.g. {"/foo": "std_msgs/String", "/bar": "std_msgs/Int32"}
             self.all_topics = {}
-
-            self.filtered_topics = [topic for topic in rospy.get_published_topics() if not any([topic[0].startswith(excluded_topic) for excluded_topic in self.exclude_topics])]
+            import re
+            self.filtered_topics = [topic for topic in rospy.get_published_topics() if not any([re.compile(f"^{excluded_topic}$").match(topic[0]) for excluded_topic in self.exclude_topics])]
 
             for topic_tuple in self.filtered_topics:
                 topic_name = topic_tuple[0]
