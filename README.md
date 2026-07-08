@@ -21,6 +21,8 @@ ros2 run rosboard rosboard_node --ros-args -p default_topics:=/camera/camera/col
 * The `/camera/camera/accel/imu_info` topic will be hidden from the web interface's topic tree.
 * The interface will automatically subscribe to `/camera/camera/color/image_raw` and `/camera/camera/accel/sample` on the first launch.
 
+**Advanced Filtering:** These parameters support **Regular Expressions (regex)**. This means you can hide or set defaults for entire trees of topics using patterns. For example, setting `exclude_topics:=.*imu.*` will hide all topics with the word `imu` in it.
+
 ---
 
 *The original project README can be found below:*
